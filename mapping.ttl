@@ -9,28 +9,28 @@
 						];
 	rr:subjectMap [
 		rr:template "http://example.org/Gene/{Gene name}";
-		rr:class iasis:Gene
+		rr:class ex:Gene
 	];
 	rr:predicateObjectMap [
-		rr:predicate iasis:geneLabel;
+		rr:predicate ex:geneLabel;
 		rr:objectMap [
 			rml:reference "Gene name"
 		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate iasis:geneHugoID;
+		rr:predicate ex:geneHugoID;
 		rr:objectMap [
 			rml:reference "HGNC ID"
 		]
 	];	
 	rr:predicateObjectMap [
-		rr:predicate iasis:cds_length;
+		rr:predicate ex:cds_length;
 		rr:objectMap [ 
 			rml:reference "Gene CDS length" 
 		]
 	];
 	rr:predicateObjectMap [
-		rr:predicate iasis:gene_isRelatedTo_sample;
+		rr:predicate ex:gene_isRelatedTo_sample;
 		rr:objectMap [ 
 			rr:parentTriplesMap <#Sample> 
 		]
