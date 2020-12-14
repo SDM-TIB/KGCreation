@@ -1,0 +1,37 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex: <http://example.org/> .
+
+<#Gene>
+	rml:logicalSource [ rml:source "example.csv";
+						rml:referenceFormulation ql:CSV 
+						];
+	rr:subjectMap [
+		rr:template "http://example.org/Gene/{Gene name}";
+		rr:class iasis:Gene
+	];
+	rr:predicateObjectMap [
+		rr:predicate iasis:geneLabel;
+		rr:objectMap [
+			rml:reference "Gene name"
+		]
+	];
+	rr:predicateObjectMap [
+		rr:predicate iasis:geneHugoID;
+		rr:objectMap [
+			rml:reference "HGNC ID"
+		]
+	];	
+	rr:predicateObjectMap [
+		rr:predicate iasis:cds_length;
+		rr:objectMap [ 
+			rml:reference "Gene CDS length" 
+		]
+	];
+	rr:predicateObjectMap [
+		rr:predicate iasis:gene_isRelatedTo_sample;
+		rr:objectMap [ 
+			rr:parentTriplesMap <#Sample> 
+		]
+	].
