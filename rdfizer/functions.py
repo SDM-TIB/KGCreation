@@ -435,7 +435,7 @@ def string_substitution(string, pattern, row, term):
 				match = temp[len(temp)-1]
 			if match in row.keys():
 				if row[match] is not None:
-					if (type(row[match]).__name__) == "int":
+					if (type(row[match]).__name__) != "str":
 						row[match] = str(row[match])
 					if re.search("^[\s|\t]*$", row[match]) is None:
 						new_string = new_string[:start + offset_current_substitution] + urllib.parse.quote(row[match].strip()) + new_string[ end + offset_current_substitution:]
