@@ -603,14 +603,10 @@ def semantify_file(triples_map, triples_map_list, delimiter, output_file_descrip
 		elif "reference" in triples_map.subject_map.subject_mapping_type:
 			if triples_map.subject_map.condition == "":
 				subject_value = string_substitution(triples_map.subject_map.value, ".+", row, "subject")
-				subject_value = subject_value[1:-1]
-				try:
-					if " " not in subject_value:
-						subject = "<http://example.com/base/" + subject_value + ">"
-					else:
-						print("<http://example.com/base/" + subject_value + "> is an invalid URL")
-						subject = None 
-				except:
+				if subject_value is not None:
+					subject_value = subject_value[1:-1]
+					subject = "<" + encode_char(subject_value) + ">"
+				else:
 					subject = None
 
 			else:

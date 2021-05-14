@@ -5,6 +5,16 @@ import sys
 import xml.etree.ElementTree as ET
 import urllib
 
+def encode_char(string):
+	encoded = ""
+	valid_char = ["~",":","#"]
+	for s in string:
+		if s in valid_char:
+			encoded += s
+		else:
+			encoded += urllib.parse.quote(s)
+	return encoded
+
 def combine_sublist(sublists, full_list):
 	if sublists:
 		i = 100000
