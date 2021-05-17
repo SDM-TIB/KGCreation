@@ -4,6 +4,7 @@ import datetime
 import sys
 import xml.etree.ElementTree as ET
 import urllib
+import math
 
 def encode_char(string):
 	encoded = ""
@@ -446,7 +447,13 @@ def string_substitution(string, pattern, row, term):
 			if match in row.keys():
 				if row[match] is not None:
 					if (type(row[match]).__name__) != "str":
-						row[match] = str(row[match])
+						if (type(row[match]).__name__) != "float":
+							row[match] = str(row[match])
+						else:
+							row[match] = str(math.ceil(row[match]))
+					else:
+						if re.match(r'^-?\d+(?:\.\d+)$', row[match]) is not None:
+							row[match] = str(math.ceil(float(row[match])))
 					if re.search("^[\s|\t]*$", row[match]) is None:
 						new_string = new_string[:start + offset_current_substitution] + urllib.parse.quote(row[match].strip()) + new_string[ end + offset_current_substitution:]
 						offset_current_substitution = offset_current_substitution + len(urllib.parse.quote(row[match])) - (end - start)
